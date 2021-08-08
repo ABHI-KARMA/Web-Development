@@ -1,0 +1,52 @@
+<div class="top-button">
+    <a href="">
+      <img src="{% static 'images/top-arrow.svg' %}" alt="">
+    </a>
+  </div>
+
+<!-- CSS -->
+.top-button{
+  padding: 10px;
+  border-radius: 5px;
+  text-align: center;
+  background-color: var(--lightgray);
+  position: fixed;
+  right: 5%;
+  bottom: 5%;
+  z-index: 50;
+  opacity: 0;
+  visibility: hidden;
+  transition: background-color 0.3s, opacity 0.3s, visibility 0.3s;
+}
+.top-button:hover{
+  background-color: #fff;
+}
+.top-button-toggle{
+  opacity: 1;
+  visibility: visible;
+}
+@media only screen and (max-width: 768px){
+  .top-button{
+    padding: 8px;
+  }
+}
+@media only screen and (max-width: 479px){
+  .top-button{
+    padding: 6px;
+  }
+}
+<!-- Javascript -->
+var topBtn = $('.top-button');
+
+$(window).scroll(function() {
+  if ($(window).scrollTop() > 300) {
+    topBtn.addClass('top-button-toggle');
+  } else {
+    topBtn.removeClass('top-button-toggle');
+  }
+});
+
+topBtn.on('click', function(e) {
+  e.preventDefault();
+  $('html, body').animate({scrollTop:0}, '300');
+});
